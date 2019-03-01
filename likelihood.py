@@ -5,10 +5,10 @@ import numpy as np
 
 
 class Set:
-    def __init__(self, colour, means, std_devs):
-        self.colour = colour
-        self.means = means
-        self.std_devs = std_devs
+    def __init__(self, id, mean, std_dev):
+        self.id = id
+        self.mean = mean
+        self.std_dev = std_dev
 
 
 def gauss_mean(x, mean, std_dev):
@@ -24,17 +24,19 @@ def probability_given():
     pass
 
 
-red = Set("red", means=(-0.07, 4.83), std_devs=(3.02, 0.98))
+red = Set(id="red", mean=(-0.07, 4.83), std_dev=(3.02, 0.98))
 
-green = Set("green", means=(5.19, -5.21), std_devs=(1.14, 1.98))
+green = Set(id="green", mean=(5.19, -5.21), std_dev=(1.14, 1.98))
 
-blue = Set("blue", means=(-3.88, -3.04), std_devs=(1.08, 0.9))
+blue = Set(id="blue", mean=(-3.88, -3.04), std_dev=(1.08, 0.9))
 
+
+print(red.id)
 
 
 points = []
 for i in np.arange(0, 11, 0.1):
     points.append(gauss_mean(i, 5, 1))
 
-plt.plot(points)
-plt.show()
+#plt.plot(points)
+#plt.show()
