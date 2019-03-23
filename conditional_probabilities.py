@@ -17,24 +17,47 @@ def set_intersection(a, b):
 
 
 def p(event, sample_space):
-    return len(event) / sample_space
+    if isinstance(event, set):
+        return len(event) / sample_space
+    else:
+        return event / sample_space
 
 
 def p_cond(posterior, prior, sample_space):
-    return (len(set_intersection(posterior, prior)) / sample_space) / p(prior, sample_space)
+    if isinstance(posterior, set) or isinstance(prior, set):
+        return (len(set_intersection(posterior, prior)) / sample_space) / p(prior, sample_space)
+    else:
+        return -1
 
 
-a_set = {1, 4}
+A = {1, 4}
 
-b_set = {2, 3, 4, 6}
+B = {2, 3, 4, 6}
 
-c_set = {1, 3, 5}
+C = {1, 3, 5}
 
-S = 6
+S = 6  # Sample Space: 6 sides for a regular dice
 
-a_U_b = set_union(a_set, b_set)
+A_union_B = set_union(A, B)
 
-
-result = p_cond(a_U_b, c_set, S)
+result = p_cond(A_union_B, C, S)
 
 print(result)
+
+
+#  Div ----------------------------
+
+males = 359
+females = 164
+
+# Causes
+cardiovascular = 353
+cerebral = 65
+respiratory = 65
+other = 40
+
+total = males + females
+
+print(p(cardiovascular, total))
+
+
