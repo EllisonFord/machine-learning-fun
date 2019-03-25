@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
-from math import factorial
+from math import factorial, exp
 
 
-def bern(x, mu, n=1):
+def gamma(x):
+    pass  # integral going on
+
+
+def bern(x, prob, n=1):
     # Bernoulli Distribution
-    return (mu**x) * (1-mu)**(n-x)
+    return (prob**x) * (1-prob)**(n-x)
 
 
 def combinations(n, x):
@@ -15,23 +19,21 @@ def combinations(n, x):
     return factorial(n)/(factorial(n-x)*factorial(x))
 
 
-def binomial(m, n, x):
-    return combinations(n, x) * bern(x, m, n)
+def binomial(x, n, prob):
+    return combinations(n, x) * bern(x, prob, n)
 
 
 def coin_mle(sequence):
     # Maximum Likelihood Estimation
-    h = 'H'
     heads = 0
     tails = 0
     for event in sequence:
-        if event is h:
+        if event is 'H':
             heads += 1
+            print('Heads')
         else:
             tails += 1
     return tails / (tails + heads)
-
-
 
 
 def pr(events, single_event_pr):
