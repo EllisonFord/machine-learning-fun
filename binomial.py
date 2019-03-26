@@ -25,8 +25,7 @@ def binomial(x, n, prob):
 
 def coin_mle(sequence):
     # Maximum Likelihood Estimation
-    heads = 0
-    tails = 0
+    heads, tails = 0, 0
     for event in sequence:
         if event is 'H':
             heads += 1
