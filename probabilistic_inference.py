@@ -26,7 +26,7 @@ def max_a_posteriori_coin(t, h, a, b):
     return numerator / denominator
 
 
-def map_throws(N, a, b, fair=True, exercise=False):
+def map_throws(N, a, b, fair=True):
     results = []
     heads, tails = 0, 0
     for n in range(1, N+1):
@@ -36,7 +36,7 @@ def map_throws(N, a, b, fair=True, exercise=False):
         else:
             tails += 1
         if fair:
-            result = max_a_posteriori_coin(t=heads, h=tails, a=a, b=b)  # t=n means casino will throw Tails every
+            result = max_a_posteriori_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
             results.append(result)
         else:
             result = max_a_posteriori_coin(t=n, h=0, a=a, b=b)  # t=n means casino will throw Tails every
@@ -48,7 +48,31 @@ def map_throws(N, a, b, fair=True, exercise=False):
     return results
 
 
-def plot_it(results, title, prior_belief=None):
+def full_bayesian_coin(t, h, a, b):
+    numerator = t+a
+    denominator = t + a + h + b
+    return numerator / denominator
+
+
+def full_bayesian_throws(N, a, b, fair=True):
+    results = []
+    heads, tails = 0, 0
+    for n in range(1, N+1):
+        outcome = choice([True, False])
+        if outcome is True:
+            heads += 1
+        else:
+            tails += 1
+        if fair:
+            result = full_bayesian_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
+            results.append(result)
+        else:
+            result = full_bayesian_coin(t=n, h=0, a=a, b=b)  # t=n means casino will throw Tails every
+            results.append(result)
+    return results
+
+
+def plot(results, title, prior_belief=None):
     plt.plot(results)
     plt.title(title)
     plt.xlabel("Num Throws")
@@ -58,27 +82,27 @@ def plot_it(results, title, prior_belief=None):
     plt.show()
 
 
-def full_bayesian_coin():
-    pass
-
-
 def main():
 
-    a = 1  # a, prior belief of being tails
-    b = 1  # b, prior belief of NOT being tails
+    # Game setting
+    fair_coin = True
     N = 500  # Number of throws
-    fair_coin = False
+
+    # Prior beliefs
+    a = 500  # a, prior belief of being tails
+    b = 500  # b, prior belief of NOT being tails
 
     # Maximum Likelihood Estimate
     results = mle_coin(N, fair=fair_coin)
-    plot_it(results, prior_belief=None, title="MLE")
+    plot(results, prior_belief=None, title="MLE")
 
     # Maximum a Posteriori
     results = map_throws(N, a, b, fair=fair_coin)
-    plot_it(results, prior_belief=a/(a+b), title="MAP")
+    plot(results, prior_belief=a/(a+b), title="MAP")
 
     # Full Bayesian
-
+    results = full_bayesian_throws(N, a, b, fair=fair_coin)
+    plot(results, prior_belief=0.5, title="Full Bayesian")
 
 
 if __name__ == '__main__':
