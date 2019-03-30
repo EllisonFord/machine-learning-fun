@@ -89,8 +89,8 @@ def main():
     N = 500  # Number of throws
 
     # Prior beliefs
-    a = 500  # a, prior belief of being tails
-    b = 500  # b, prior belief of NOT being tails
+    a = 50  # a: prior belief of being tails
+    b = 50  # b: prior belief of NOT being tails
 
     # Maximum Likelihood Estimate
     results = mle_coin(N, fair=fair_coin)
