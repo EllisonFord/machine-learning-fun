@@ -48,12 +48,13 @@ def map_throws(N, a, b, fair=True, exercise=False):
     return results
 
 
-def plot_it(results, title, prior_belief=0.5):
+def plot_it(results, title, prior_belief=None):
     plt.plot(results)
     plt.title(title)
     plt.xlabel("Num Throws")
     plt.ylabel("Posterior probability that outcome is Tails")
-    plt.axhline(prior_belief, color="orange")
+    if prior_belief is not None:
+        plt.axhline(prior_belief, color="orange")
     plt.show()
 
 
@@ -63,20 +64,21 @@ def full_bayesian_coin():
 
 def main():
 
-    a = 5  # a, prior belief of being tails
-    b = 5  # b, prior belief of NOT being tails
-    N = 100  # Number of throws
+    a = 1  # a, prior belief of being tails
+    b = 1  # b, prior belief of NOT being tails
+    N = 500  # Number of throws
+    fair_coin = False
 
-    # Maximum Lilelihood Estimate
-    results = mle_coin(N, fair=False)
-    plot_it(results, prior_belief=0.5, title="MLE")
+    # Maximum Likelihood Estimate
+    results = mle_coin(N, fair=fair_coin)
+    plot_it(results, prior_belief=None, title="MLE")
 
     # Maximum a Posteriori
-    results = map_throws(N, a, b, fair=False)
-    plot_it(results, prior_belief=0.5, title="MAP")
-
+    results = map_throws(N, a, b, fair=fair_coin)
+    plot_it(results, prior_belief=a/(a+b), title="MAP")
 
     # Full Bayesian
+
 
 
 if __name__ == '__main__':
