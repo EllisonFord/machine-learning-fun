@@ -4,8 +4,8 @@ from math import exp
 
 def softmax(predictions):
     denominator = 0.0
-    for c in predictions:
-        denominator += exp(c)
+    for prediction in predictions:
+        denominator += exp(prediction)
     return [exp(x) / denominator for x in predictions]
 
 
