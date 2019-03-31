@@ -72,6 +72,39 @@ def full_bayesian_throws(N, a, b, fair=True):
     return results
 
 
+def play(N, a, b, fair=True):
+    results_mle = []
+    results_map = []
+    results_bayes = []
+    heads, tails = 0, 0
+    for n in range(1, N+1):
+        outcome = choice([True, False])
+        if outcome is True:
+            tails += 1
+        else:
+            heads += 1
+        if fair:
+            result_mle = tails / (heads + tails)
+            results_mle.append(result_mle)
+
+            result_map = max_a_posteriori_coin(t=tails, h=heads, a=a, b=b)
+            results_map.append(result_map)
+
+            result_bayes = full_bayesian_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
+            results_bayes.append(result_bayes)
+        else:
+            result_mle = 1
+            results_mle.append(result_mle)
+
+            result_map = max_a_posteriori_coin(t=n, h=0, a=a, b=b)
+            results_map.append(result_map)
+
+            result_bayes = full_bayesian_coin(t=n, h=0, a=a, b=b)  # t=n means casino will throw Tails every
+            results_bayes.append(result_bayes)
+
+    return results_mle, results_map, results_bayes
+
+
 def plot(results, title, prior_belief=None):
     plt.plot(results)
     plt.title(title)
@@ -92,17 +125,20 @@ def main():
     a = 50  # a: prior belief of being tails
     b = 50  # b: prior belief of NOT being tails
 
-    # Maximum Likelihood Estimate
-    results = mle_coin(N, fair=fair_coin)
-    plot(results, prior_belief=None, title="MLE")
+    # Play Results
+    mle, mapost, bayes = play(N, a, b, fair=fair_coin)
+
+    # Maximum Likelihood Estimation
+    # mle_coin(N, fair=fair_coin)
+    plot(mle, title="MLE")
 
     # Maximum a Posteriori
-    results = map_throws(N, a, b, fair=fair_coin)
-    plot(results, prior_belief=a/(a+b), title="MAP")
+    # results = map_throws(N, a, b, fair=fair_coin)
+    plot(mapost, prior_belief=a/(a+b), title="MAP")
 
     # Full Bayesian
-    results = full_bayesian_throws(N, a, b, fair=fair_coin)
-    plot(results, prior_belief=0.5, title="Full Bayesian")
+    # results = full_bayesian_throws(N, a, b, fair=fair_coin)
+    plot(bayes, prior_belief=a/(a+b), title="Full Bayesian")
 
 
 if __name__ == '__main__':
