@@ -127,23 +127,24 @@ def main():
     a = 50  # a: prior belief of being tails
     b = 50  # b: prior belief of NOT being tails
 
-    # Play Results
-    mle, mapost, bayes = play(N, a, b, fair=fair_coin)
+    # Play and get the results
+    mle, max_a_post, bayes = play(N, a, b, fair=fair_coin)
 
-    # Maximum Likelihood Estimation
+    title = 'Maximum Likelihood Estimation'
     # mle_coin(N, fair=fair_coin)
-    plot(mle, title="MLE")
-    report(mle, 'MLE')
+    plot(mle, title=title)
+    report(mle, title)
 
-    # Maximum a Posteriori
+    title = 'Maximum a Posteriori'
     # results = map_throws(N, a, b, fair=fair_coin)
-    plot(mapost, prior_belief=a/(a+b), title="MAP")
-    report(mapost, 'MAP')
+    plot(max_a_post, prior_belief=a/(a+b), title=title)
+    report(max_a_post, title)
 
-    # Full Bayesian
+    title = 'Full Bayesian'
     # results = full_bayesian_throws(N, a, b, fair=fair_coin)
-    plot(bayes, prior_belief=a/(a+b), title="Full Bayesian")
-    report(bayes, 'Full Bayesian')
+    plot(bayes, prior_belief=a/(a+b), title=title)
+    report(bayes, title)
+
 
 if __name__ == '__main__':
     main()
