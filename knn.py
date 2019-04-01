@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 from math import sqrt, cos
+from heapq import nsmallest
+
+
+POSITION, LABEL = range(2)
 
 
 def l_one_norm(x, x_new):  # Given 2 tuples, find the distance between them
@@ -36,12 +40,35 @@ def k_nn_weighted(X, Y, new_x, distance_measure='euclidean'):
     pass
 
 
-def one_nn(X, Y, new_x, distance_measure='euclidean'):
-    pass
+def get_distances(X, Y, new_x, distance_measure='l2'):
+    xy_set = zip(X, Y)
+    all_distances = []
+    for item in xy_set:
+        if distance_measure is 'l1':
+            all_distances.append((l_one_norm(item[POSITION], new_x), item[LABEL]))
+        if distance_measure is 'l2':
+            all_distances.append((l_two_norm(item[POSITION], new_x), item[LABEL]))
+        if distance_measure is 'l_inf':
+            all_distances.append((l_inf_norm(item[POSITION], new_x), item[LABEL]))
+    return all_distances
 
 
-def k_nn(X, Y, new_x, distance_measure='euclidean'):
-    pass
+def one_nn(X, Y, new_x, distance_measure='l2'):
+    distances = get_distances(X, Y, new_x, distance_measure)
+    return min(distances)[LABEL]
+
+
+def k_nn(k, X, Y, new_x, distance_measure='l2'):
+    distances = get_distances(X, Y, new_x, distance_measure)
+
+    something = nsmallest(k, distances[POSITION])
+
+    for distance in distances:
+        print(distance)
+
+    print('Smallest '+str(2)+' distances:', something)
+
+
 
 
 def main():
@@ -49,22 +76,20 @@ def main():
     X = ((1, 2),
          (1, 5))
 
-    x_new = (2, 3)
-
     Y = (1,
-         1,
-         1,
-         1,
-         0,
          0)
 
-    print(l_one_norm(X[1], x_new))
+    x_new = (1, 5)
 
-    print(l_two_norm(X[1], x_new))
+    print('New point will be:', one_nn(X, Y, x_new))
 
-    print(l_inf_norm(X[1], x_new))
+    print('L1 Norm:', l_one_norm(X[1], x_new))
 
+    print('L2 Norm:', l_two_norm(X[1], x_new))
 
+    print('L_Inf Norm:', l_inf_norm(X[1], x_new))
+
+    k_nn(2, X, Y, x_new)
 
 
 if __name__ == '__main__':
