@@ -114,8 +114,10 @@ def plot(results, title, prior_belief=None):
         plt.axhline(prior_belief, color="orange")
     plt.show()
 
+
 def report(data, analysis):
     print(f'Last prediction of {analysis} is: {data[-1]}')
+
 
 def main():
 
