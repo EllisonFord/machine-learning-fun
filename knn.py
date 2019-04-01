@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-from math import sqrt, cos
 from heapq import nsmallest
-
+from math import sqrt
 
 POSITION, LABEL = range(2)
 
@@ -36,10 +35,6 @@ def mahalanobis():
     pass
 
 
-def k_nn_weighted(X, Y, new_x, distance_measure='euclidean'):
-    pass
-
-
 def get_distances(X, Y, new_x, distance_measure='l2'):
     xy_set = zip(X, Y)
     all_distances = []
@@ -53,6 +48,11 @@ def get_distances(X, Y, new_x, distance_measure='l2'):
     return all_distances
 
 
+def k_nn_weighted(X, Y, new_x, distance_measure='euclidean'):
+    distances = get_distances(X, Y, new_x, distance_measure)
+    pass
+
+
 def one_nn(X, Y, new_x, distance_measure='l2'):
     distances = get_distances(X, Y, new_x, distance_measure)
     return min(distances)[LABEL]
@@ -61,14 +61,18 @@ def one_nn(X, Y, new_x, distance_measure='l2'):
 def k_nn(k, X, Y, new_x, distance_measure='l2'):
     distances = get_distances(X, Y, new_x, distance_measure)
 
+    normalisation_dist = sum(distances[POSITION])
+
+    print('distances_position:', distances[POSITION])
+
+    print('Base dist:', normalisation_dist)
+
     something = nsmallest(k, distances[POSITION])
 
     for distance in distances:
         print(distance)
 
-    print('Smallest '+str(2)+' distances:', something)
-
-
+    print(f'Smallest {k} distances:', something)
 
 
 def main():
@@ -89,7 +93,11 @@ def main():
 
     print('L_Inf Norm:', l_inf_norm(X[1], x_new))
 
-    k_nn(2, X, Y, x_new)
+    print('1-NN classification:', one_nn(X, Y, x_new))
+
+    print('k-NN classification:', k_nn(2, X, Y, x_new))
+
+    print('')
 
 
 if __name__ == '__main__':
