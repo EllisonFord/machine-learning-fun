@@ -40,27 +40,30 @@ def i_gini(data):
 
 def main():
 
-    data_m = (40, 40)
+    data_m = (67, 65, 168)
+    total_set = sum(data_m)
     print('Error:', i_error(data_m))
     print('Entropy:', i_entropy(data_m))
     print('Gini index:', i_gini(data_m))
     print()
 
-    data_l = (30, 10)
+    data_l = (40, 60)
     print('Error:', i_error(data_l))
     print('Entropy:', i_entropy(data_l))
     print('Gini index:', i_gini(data_l))
     print()
 
-    data_r = (10, 30)
+    data_r = (0, 100)
     print('Error:', i_error(data_r))
     print('Entropy:', i_entropy(data_r))
     print('Gini index:', i_gini(data_r))
     print()
 
-    print('IG Error:', information_gain(i_error(data_m), i_error(data_l), i_error(data_r), 0.5, 0.5))
-    print('IG Gini:', information_gain(i_gini(data_m), i_gini(data_l), i_gini(data_r), 0.5, 0.5))
-    print('IG Entropy:', information_gain(i_entropy(data_m), i_entropy(data_l), i_entropy(data_r), 0.5, 0.5))
+    pr_l = sum(data_l)/total_set
+    pr_r = sum(data_r)/total_set
+    print('IG Error:', information_gain(i_error(data_m), i_error(data_l), i_error(data_r), pr_l, pr_r))
+    print('IG Gini:', information_gain(i_gini(data_m), i_gini(data_l), i_gini(data_r), pr_l, pr_r))
+    print('IG Entropy:', information_gain(i_entropy(data_m), i_entropy(data_l), i_entropy(data_r), pr_l, pr_r))
 
 
 if __name__ == '__main__':
