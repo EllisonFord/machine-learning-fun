@@ -114,12 +114,14 @@ def plot(results, title, prior_belief=None):
         plt.axhline(prior_belief, color="orange")
     plt.show()
 
+def report(data, analysis):
+    print(f'Last prediction of {analysis} is: {data[-1]}')
 
 def main():
 
     # Game setting
     fair_coin = True
-    N = 500  # Number of throws
+    N = 50  # Number of throws
 
     # Prior beliefs
     a = 50  # a: prior belief of being tails
@@ -131,15 +133,17 @@ def main():
     # Maximum Likelihood Estimation
     # mle_coin(N, fair=fair_coin)
     plot(mle, title="MLE")
+    report(mle, 'MLE')
 
     # Maximum a Posteriori
     # results = map_throws(N, a, b, fair=fair_coin)
     plot(mapost, prior_belief=a/(a+b), title="MAP")
+    report(mapost, 'MAP')
 
     # Full Bayesian
     # results = full_bayesian_throws(N, a, b, fair=fair_coin)
     plot(bayes, prior_belief=a/(a+b), title="Full Bayesian")
-
+    report(bayes, 'Full Bayesian')
 
 if __name__ == '__main__':
     main()
