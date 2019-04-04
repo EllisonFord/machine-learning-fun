@@ -24,7 +24,7 @@ def polynomial():
 
 
 def gaussian(alpha, x, sigma):
-    alpha*exp(-(x*x/sigma*sigma))
+    return alpha*exp(-(x*x/sigma*sigma))
 
 
 def y(X, W):
@@ -36,10 +36,11 @@ def main():
 
     X = noisy_sine(samples=10, precision=10)
 
-    D = len(X)  # Rows
-    N = 1  # Columns
+    # Normally MxN where M is the rows, N is the cols
+    N = len(X)  # Rows
+    D = 1  # Columns
 
-
+    
 
     """ # Pseudo Inverse calculation and multiplication
     X = np.random.randn(2, 3)
