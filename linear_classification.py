@@ -23,6 +23,8 @@ def main(*args, **kwargs):
 
     sm_predictions = softmax(predictions)
 
+    print(max(sm_predictions))
+
     print(sm_predictions)
 
     sample_range = range(5)

@@ -119,7 +119,7 @@ def report(data, analysis):
     print(f'Last prediction of {analysis} is: {data[-1]}')
 
 
-def main():
+def main(*args, **kwargs):
 
     # Game setting
     fair_coin = True

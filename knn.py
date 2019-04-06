@@ -75,7 +75,7 @@ def k_nn(k, X, Y, new_x, distance_measure='l2'):
     print(f'Smallest {k} distances:', something)
 
 
-def main():
+def main(*args, **kwargs):
 
     X = ((1, 2),
          (1, 5))

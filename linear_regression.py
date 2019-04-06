@@ -32,7 +32,7 @@ def y(X, W):
     return np.product(WT, X)
 
 
-def main():
+def main(*args, **kwargs):
 
     X = noisy_sine(samples=10, precision=10)
 

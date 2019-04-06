@@ -39,7 +39,7 @@ def pr(events, single_event_pr):
     pass
 
 
-def main():
+def main(*args, **kwargs):
 
     flips1 = ('H', 'T', 'H', 'H', 'T', 'H', 'H', 'H', 'T', 'H')
 

@@ -38,7 +38,7 @@ def i_gini(data):
     return 1 - s
 
 
-def main():
+def main(*args, **kwargs):
 
     data_m = (67, 65, 168)
     total_set = sum(data_m)
