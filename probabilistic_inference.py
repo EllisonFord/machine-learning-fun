@@ -76,9 +76,9 @@ def play(N, a, b, fair=True):
     results_mle = []
     results_map = []
     results_bayes = []
-    heads, tails = 0, 0
+    heads, tails = 0, 0  # Initialise our counters
     for n in range(1, N+1):
-        outcome = choice([True, False])
+        outcome = choice([True, False])  # We flip the coin here
         if outcome is True:
             tails += 1
         else:
