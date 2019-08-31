@@ -16,30 +16,28 @@ def std_dev(var):
     return sqrt(var)
 
 
-def binomial(total, selection):
+def binomial(total, choose):
     try:
-        binom = fac(total) // fac(selection) // fac(total - selection)
+        binom = fac(total) // fac(choose) // fac(total - choose)
     except ValueError:
         binom = 0
     return binom
 
 
-def pr(p, total, selection):
-    return binomial(total, selection)*(p**selection) * (1-p)**(total-selection)
+def pr(p, total, choose):
+    return binomial(total, choose)*(p**choose) * (1-p)**(total-choose)
 
 
 n = 20
 p = 0.82
-
-
 maximum = 21
 minimum = 18
 
 #print(pr(p=p, total=n, selection=18))
 
 results = []
-for i in range(minimum, maximum):
-    results.append(pr(p=p, total=n, selection=i))
+for k in range(minimum, maximum):
+    results.append(pr(p=p, total=n, choose=k))
 
 print(sum(results))
 
