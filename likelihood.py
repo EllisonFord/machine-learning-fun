@@ -38,5 +38,5 @@ points = []
 for i in np.arange(0, 11, 0.1):
     points.append(gauss_mean(i, 5, 1))
 
-#plt.plot(points)
-#plt.show()
+plt.plot(points)
+plt.show()
