@@ -28,23 +28,33 @@ def pr(p, total, choose):
     return binomial(total, choose)*(p**choose) * (1-p)**(total-choose)
 
 
-n = 20
-p = 0.82
-maximum = 21
-minimum = 18
+def main():
+    n = 20
+    p = 0.5
+    maximum = n+1
+    minimum = 0
 
-#print(pr(p=p, total=n, selection=18))
+    # print(pr(p=p, total=n, selection=18))
 
-results = []
-for k in range(minimum, maximum):
-    results.append(pr(p=p, total=n, choose=k))
+    results = []
+    for k in range(minimum, maximum):
+        results.append(pr(p=p, total=n, choose=k))
 
-print(sum(results))
+    print('Integral of results:', sum(results))
 
-plt.bar(range(minimum, maximum), results)
+    # Plot
+    plt.bar(range(minimum, maximum), results)
+    plt.xlabel('k')
+    plt.ylabel('Probability of Heads given this Coin')
+    plt.title(f'{n} coin flips')
+    plt.show()
 
-plt.show()
+    print(f'We have a high probability of getting {results.index(max(results))} heads in this experiment.')
 
-print(mean(n, p))
+    print('Mean:', mean(n, p))
 
-print(variance(n, p))
+    print('Variance:', variance(n, p))
+
+
+if __name__ == '__main__':
+    main()
