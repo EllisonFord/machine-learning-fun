@@ -25,20 +25,22 @@ def binomial(total, choose):
 
 
 def pr(p, total, choose):
+    print('Binomial:', binomial(total, choose), 'Single:', (p**choose) * (1-p)**(total-choose))
     return binomial(total, choose)*(p**choose) * (1-p)**(total-choose)
 
 
 def main():
-    n = 20
+    n = 10
     p = 0.5
     maximum = n+1
     minimum = 0
 
     # print(pr(p=p, total=n, selection=18))
-
+    print()
     results = []
     for k in range(minimum, maximum):
         results.append(pr(p=p, total=n, choose=k))
+    print()
 
     print('Integral of results:', sum(results))
 
