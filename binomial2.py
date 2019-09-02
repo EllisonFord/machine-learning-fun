@@ -25,13 +25,13 @@ def binomial(total, choose):
 
 
 def pr(p, total, choose):
-    print('Binomial:', binomial(total, choose), 'Single:', (p**choose) * (1-p)**(total-choose))
+    print(f'{total} choose {choose} has {binomial(total, choose)} combinations. Single probability: {(p**choose) * (1-p)**(total-choose)}')
     return binomial(total, choose)*(p**choose) * (1-p)**(total-choose)
 
 
 def main():
-    n = 10
-    p = 0.5
+    n = 40
+    p = 0.12
     maximum = n+1
     minimum = 0
 
@@ -46,12 +46,15 @@ def main():
 
     # Plot
     plt.bar(range(minimum, maximum), results)
-    plt.xlabel('k')
-    plt.ylabel('Probability of Heads given this Coin')
+    plt.xlabel('Number of Heads')
+    plt.ylabel('Likelihood')
     plt.title(f'{n} coin flips')
     plt.show()
 
-    print(f'We have a high probability of getting {results.index(max(results))} heads in this experiment.')
+    sorted_results = sorted(results, reverse=True)
+
+    print(f'We have the highest probability of getting {results.index(max(results))} heads in this experiment, '
+          f'followed by {results.index(sorted_results[1])} heads.')
 
     print('Mean:', mean(n, p))
 
