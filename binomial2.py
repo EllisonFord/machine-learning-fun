@@ -24,8 +24,9 @@ def binomial(total, choose):
     return binom
 
 
-def pr(p, total, choose):
-    print(f'{total} choose {choose} has {binomial(total, choose)} combinations. Single probability: {(p**choose) * (1-p)**(total-choose)}')
+def pr(p, total, choose, verbose=False):
+    if verbose:
+        print(f'{total} choose {choose} has {binomial(total, choose)} combinations. Single probability: {(p**choose) * (1-p)**(total-choose)}')
     return binomial(total, choose)*(p**choose) * (1-p)**(total-choose)
 
 
@@ -39,7 +40,7 @@ def main():
     print()
     results = []
     for k in range(minimum, maximum):
-        results.append(pr(p=p, total=n, choose=k))
+        results.append(pr(p=p, total=n, choose=k, verbose=True))
     print()
 
     print('Integral of results:', sum(results))
