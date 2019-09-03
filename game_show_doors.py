@@ -17,10 +17,13 @@ def gameshow_host(doors, your_choice):
     # Chooses only between 2
     drop_a_or_b = np.random.randint(2, size=1)[0]
 
+    door_a, door_b = None, None
+    for door in doors:
+        if door is your_choice:
+            continue
+        else:
+            continue
 
-
-
-    doors[drop_num] = -1
     return doors
 
 
@@ -36,13 +39,14 @@ def run_game(score, strategy=SWAP):
     doors = gameshow_host(doors, chosen_pocket)
 
     if strategy is SWAP:
-        # swap
+        doors[chosen_pocket] = 0
         score += open_door(doors, chosen_pocket)
     else:
         score += open_door(doors, chosen_pocket)
 
 
 def main(*args, **kwargs):
+
     games = 10
 
     score = 0
