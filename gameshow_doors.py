@@ -40,7 +40,7 @@ def next_available_door_index(doors, your_choice):
     return door_you_can_change_to
 
 
-def run_game(strategy=SWAP):
+def run_single_game(strategy=SWAP):
 
     # We set the game
     doors = [0, 0, 0]
@@ -64,24 +64,23 @@ def run_game(strategy=SWAP):
     return score
 
 
+def run_games(num_games, strategy):
+    score = 0
+    for game in range(num_games):
+        score += run_single_game(strategy)
+    pct_score = 100 * score / num_games
+    print(f'Success rate by swapping door: {pct_score}%')
+    return pct_score
+
+
 def main():
 
-    games = 1000
+    num_games = 100000
     aggregate = 0.
 
-    score = 0
-    for game in range(games):
-        score += run_game(strategy=SWAP)
-    pct_score = 100 * score / games
-    aggregate += pct_score
-    print(f'\nSuccess rate by swapping door: {pct_score}%')
-
-    score = 0
-    for game in range(games):
-        score += run_game(strategy=KEEP)
-    pct_score = 100 * score / games
-    aggregate += pct_score
-    print(f'Success rate by keeping door: {pct_score}%')
+    print('')
+    aggregate += run_games(num_games, SWAP)
+    aggregate += run_games(num_games, KEEP)
 
     print(f'Error: {round(abs(100 - aggregate), 3)}%')
 
