@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-import matplotlib.pyplot as plt
 import numpy as np
+
 
 SWAP, KEEP = range(2)
 
 
 def open_door(doors, your_choice):
-    if doors[your_choice] == 1:
-        return 1
-    else:
-        return 0
+    if doors[your_choice] == 1: return 1
+    else: return 0
 
 
 def gameshow_host(doors, your_choice):
@@ -66,27 +64,26 @@ def run_game(strategy=SWAP):
     return score
 
 
-def main(*args, **kwargs):
+def main():
 
-    games = 10000
+    games = 1000
+    aggregate = 0.
 
     score = 0
-    pct_score = []
     for game in range(games):
         score += run_game(strategy=SWAP)
-        pct_score.append(100 * score / games)
-    print(f'\nSuccess rate by swapping door: {100 * score / games}%')
+    pct_score = 100 * score / games
+    aggregate += pct_score
+    print(f'\nSuccess rate by swapping door: {pct_score}%')
 
     score = 0
-    pct_score = []
     for game in range(games):
         score += run_game(strategy=KEEP)
-        pct_score.append(100 * score / games)
-    print(f'Success rate by keeping door: {100 * score / games}%')
+    pct_score = 100 * score / games
+    aggregate += pct_score
+    print(f'Success rate by keeping door: {pct_score}%')
 
-    # Plot results
-    # plt.plot( range(games), pct_score, 'go--', linewidth=2, markersize=12)
-    # plt.show()
+    print(f'Error: {round(abs(100 - aggregate), 3)}%')
 
 
 if __name__ == '__main__':
