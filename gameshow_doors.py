@@ -40,7 +40,7 @@ def next_available_door_index(doors, your_choice):
     return door_you_can_change_to
 
 
-def run_single_game(strategy=SWAP):
+def run_single_game(strategy):
 
     # We set the game
     doors = [0, 0, 0]
@@ -79,8 +79,8 @@ def main():
     aggregate = 0.
 
     print('')
-    aggregate += run_games(num_games, SWAP)
-    aggregate += run_games(num_games, KEEP)
+    aggregate += run_games(num_games, strategy=SWAP)
+    aggregate += run_games(num_games, strategy=KEEP)
 
     print(f'Error: {round(abs(100 - aggregate), 3)}%')
 
