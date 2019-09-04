@@ -69,7 +69,11 @@ def run_games(num_games, strategy):
     for game in range(num_games):
         score += run_single_game(strategy)
     pct_score = 100 * score / num_games
-    print(f'Success rate by swapping door: {pct_score}%')
+
+    if strategy is SWAP: text = 'swapping'
+    else: text = 'keeping'
+
+    print(f'Success rate by {text} door: {pct_score}%')
     return pct_score
 
 
