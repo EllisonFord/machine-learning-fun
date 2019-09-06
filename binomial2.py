@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from math import factorial as fac
+from functions_script import binomial
 import matplotlib.pyplot as plt
 from math import sqrt
 
@@ -14,14 +14,6 @@ def variance(n, p):
 
 def std_dev(var):
     return sqrt(var)
-
-
-def binomial(total, choose):
-    try:
-        binom = fac(total) // fac(choose) // fac(total - choose)
-    except ValueError:
-        binom = 0
-    return binom
 
 
 def pr(p, total, choose, verbose=False):

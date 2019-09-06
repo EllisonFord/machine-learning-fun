@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-
-
-def mean(v):
-    return sum(v)/len(v)
+from functions_script import mean
 
 
 def sample_cov(x, y):

@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
-
-
-def mean(v):
-    return sum(v) / len(v)
+from functions_script import mean
 
 
 def b_1(x, y):
     mx = mean(x)
     my = mean(y)
     numerator = denominator = 0.
-    for i in range(len(x)):
-        numerator += (x[i] - mx) * (y[i] - my)
-        denominator += (x[i] - mx) ** 2
+    for xi, yi in zip(x, y):
+        numerator += (xi - mx) * (yi - my)
+        denominator += (xi - mx) ** 2
     return numerator / denominator
 
 
@@ -26,17 +23,24 @@ def get_b0_b1(x, y):
     return b0, b1
 
 
-xv = (65, 65, 62, 67, 69, 65, 61, 67)
+def main():
 
-yv = (105, 125, 110, 120, 140, 135, 95, 130)
+    xv = (65, 65, 62, 67, 69, 65, 61, 67)
 
-# plt.scatter(x=xv, y=yv)
-# plt.show()
+    yv = (105, 125, 110, 120, 140, 135, 95, 130)
 
-b, m = get_b0_b1(xv, yv)
+    # plt.scatter(x=xv, y=yv)
+    # plt.show()
 
-plt.plot(xv, yv, '.')
-# plt.plot(m, b, '-')
-plt.show()
+    b, m = get_b0_b1(xv, yv)
 
-print(get_b0_b1(xv, yv))
+    # plt.plot(xv, yv, '.')
+    # plt.plot(m, b, '-')
+    # plt.show()
+
+    print(get_b0_b1(xv, yv))
+
+
+if __name__ == '__main__':
+    main()
+

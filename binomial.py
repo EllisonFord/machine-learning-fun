@@ -1,26 +1,14 @@
 #!/usr/bin/env python3
-
-from math import factorial, exp
+from functions_script import binomial
 
 
 def gamma(x):
     pass  # integral going on
 
 
+# Bernoulli Distribution
 def bern(x, prob, n=1):
-    # Bernoulli Distribution
     return (prob**x) * (1-prob)**(n-x)
-
-
-def combinations(n, x):
-    if x > n:
-        print('x is higher than n. Please correct.')
-        return
-    return factorial(n)/(factorial(n-x)*factorial(x))
-
-
-def binomial(x, n, prob):
-    return combinations(n, x) * bern(x, prob, n)
 
 
 def coin_mle(sequence):
@@ -53,7 +41,7 @@ def main(*args, **kwargs):
 
     print(mle_flips2)
 
-    # print(binomial(5, 3))
+    print(binomial(5, 3))
 
     print(bern(0.5, 0.5))
 

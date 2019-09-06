@@ -1,30 +1,7 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
-from math import sin, pi, exp
+from functions_script import noisy_sine
 import numpy as np
-import random
-
-
-def noisy_sine(samples, precision):
-    X = []  # Targets Z
-    for x_i in range(samples+1):
-        X.append(sin((2*pi*x_i)/samples) + random.gauss(0, 1/precision))
-    plt.scatter(range(samples+1), X)
-    plt.title('Generated Noisy Sinusoid')
-    plt.show()
-    return X
-
-
-def sigmoid(x):
-    return 1 / (1 + exp(-x))
-
-
-def polynomial():
-    pass
-
-
-def gaussian(alpha, x, sigma):
-    return alpha*exp(-(x*x/sigma*sigma))
 
 
 def y(X, W):
@@ -39,8 +16,6 @@ def main(*args, **kwargs):
     # Normally MxN where M is the rows, N is the cols
     N = len(X)  # Rows
     D = 1  # Columns
-
-    
 
     """ # Pseudo Inverse calculation and multiplication
     X = np.random.randn(2, 3)
@@ -58,6 +33,7 @@ def main(*args, **kwargs):
         print(element)
     print()
     """
+
 
 if __name__ == '__main__':
     main()

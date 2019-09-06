@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
-from math import exp
-
-
-def softmax(predictions):
-    denominator = 0.0
-    for prediction in predictions:
-        denominator += exp(prediction)
-    return [exp(x) / denominator for x in predictions]
+from functions_script import softmax
 
 
 def hyperplane(w, w0, N=range(100)):
