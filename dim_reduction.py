@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def covariance_matrix():
+    pass
+
+
 def sample_cov(x, y):
     mx = mean(x)
     my = mean(y)

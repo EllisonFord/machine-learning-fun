@@ -5,22 +5,19 @@ import numpy as np
 SWAP, KEEP = range(2)
 
 
-def open_door(doors, your_choice):
+def open_door(doors: list, your_choice: int) -> int:
     if doors[your_choice] == 1: return 1
     else: return 0
 
 
-def gameshow_host(doors, your_choice):
+def gameshow_host(doors: list, your_choice: int) -> list:
     # Chooses only between 2
     a_or_b = np.random.randint(2, size=1)[0]
-
     doors_you_can_close = []
-
     for i, door in enumerate(doors):
         if i == your_choice: continue
         if door == 1: continue
         doors_you_can_close.append(i)
-
     if len(doors_you_can_close) is 1:
         doors[doors_you_can_close[0]] = -1
     else:
@@ -28,20 +25,16 @@ def gameshow_host(doors, your_choice):
     return doors
 
 
-def next_available_door_index(doors, your_choice):
-
+def next_available_door_index(doors: list, your_choice: int) -> int:
     door_you_can_change_to = None
-
     for i, door in enumerate(doors):
         if i == your_choice: continue
         if door == -1: continue
         door_you_can_change_to = i
-
     return door_you_can_change_to
 
 
-def run_single_game(strategy):
-
+def run_single_game(strategy: int) -> int:
     # We set the game
     doors = [0, 0, 0]
     prize_pocket = np.random.choice(range(len(doors)))
@@ -64,7 +57,7 @@ def run_single_game(strategy):
     return score
 
 
-def run_games(num_games, strategy):
+def run_games(num_games: int, strategy: int) -> float:
     score = 0
     for game in range(num_games):
         score += run_single_game(strategy)
