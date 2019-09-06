@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
+from math import sin, pi, exp, factorial as fac
 import matplotlib.pyplot as plt
-from math import sin, pi, exp, factorial
 import random
 
 
@@ -9,7 +9,7 @@ def mean(v):
 
 
 def sigmoid(x):
-    return 1 / (1 + exp(-x))
+    return 1/(1+exp(-x))
 
 
 def noisy_sine(samples, precision):
@@ -38,7 +38,7 @@ def binomial(total, choose):
         print('choose is higher than total. Please correct.')
         return
     try:
-        binom = factorial(total) // factorial(choose) // factorial(total - choose)
+        binom = fac(total) // fac(choose) // fac(total - choose)
     except ValueError:
         binom = 0
     return binom
