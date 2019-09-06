@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from math import sin, pi, exp, factorial as fac
+from math import sin, pi, exp, factorial as fact
 import matplotlib.pyplot as plt
 import random
 
@@ -38,7 +38,7 @@ def binomial(total, choose):
         print('choose is higher than total. Please correct.')
         return
     try:
-        binom = fac(total) // fac(choose) // fac(total - choose)
+        binom = fact(total) // fact(choose) // fact(total - choose)
     except ValueError:
         binom = 0
     return binom

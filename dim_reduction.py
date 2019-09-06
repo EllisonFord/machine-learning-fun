@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-from functions_script import mean
-import matplotlib.pyplot as plt
+from functions_script import mean, plt
 import numpy as np
 
 

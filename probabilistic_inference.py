@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import matplotlib.pyplot as plt
+from functions_script import plt
 from random import choice
 
 
-def mle_coin(N, fair=True):
+def mle_coin(large_n, fair=True):
     results = []
     heads, tails = 0, 0
-    for n in range(1, N + 1):
+    for n in range(1, large_n + 1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
@@ -26,10 +26,10 @@ def max_a_posteriori_coin(t, h, a, b):
     return numerator / denominator
 
 
-def map_throws(N, a, b, fair=True):
+def map_throws(large_n, a, b, fair=True):
     results = []
     heads, tails = 0, 0
-    for n in range(1, N+1):
+    for n in range(1, large_n+1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
@@ -54,10 +54,10 @@ def full_bayesian_coin(t, h, a, b):
     return numerator / denominator
 
 
-def full_bayesian_throws(N, a, b, fair=True):
+def full_bayesian_throws(large_n, a, b, fair=True):
     results = []
     heads, tails = 0, 0
-    for n in range(1, N+1):
+    for n in range(1, large_n+1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
@@ -72,12 +72,12 @@ def full_bayesian_throws(N, a, b, fair=True):
     return results
 
 
-def play(N, a, b, fair=True):
+def play(large_n, a, b, fair=True):
     results_mle = []
     results_map = []
     results_bayes = []
     heads, tails = 0, 0  # Initialise our counters
-    for n in range(1, N+1):
+    for n in range(1, large_n+1):
         outcome = choice([True, False])  # We flip the coin here
         if outcome is True:
             tails += 1
@@ -119,18 +119,18 @@ def report(data, analysis):
     print(f'Last prediction of {analysis} is: {data[-1]}')
 
 
-def main(*args, **kwargs):
+def main():
 
     # Game setting
     fair_coin = True
-    N = 50  # Number of throws
+    large_n = 50  # Number of throws
 
     # Prior beliefs
     a = 50  # a: prior belief of being tails
     b = 50  # b: prior belief of NOT being tails
 
     # Play and get the results
-    mle, max_a_post, bayes = play(N, a, b, fair=fair_coin)
+    mle, max_a_post, bayes = play(large_n, a, b, fair=fair_coin)
 
     title = 'Maximum Likelihood Estimation'
     # mle_coin(N, fair=fair_coin)
