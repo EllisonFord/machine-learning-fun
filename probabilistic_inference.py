@@ -2,17 +2,19 @@
 from functions_script import plt
 from random import choice
 
+FAIR, UNFAIR = range(2)
 
-def mle_coin(large_n, fair=True):
+
+def mle_coin(num_throws, fairness=FAIR):
     results = []
     heads, tails = 0, 0
-    for n in range(1, large_n + 1):
+    for n in range(1, num_throws + 1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
         else:
             tails += 1
-        if fair:
+        if fairness is FAIR:
             result = tails / (heads + tails)
             results.append(result)
         else:
@@ -26,16 +28,16 @@ def max_a_posteriori_coin(t, h, a, b):
     return numerator / denominator
 
 
-def map_throws(large_n, a, b, fair=True):
+def map_throws(num_throws, a, b, fairness=FAIR):
     results = []
     heads, tails = 0, 0
-    for n in range(1, large_n+1):
+    for n in range(1, num_throws+1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
         else:
             tails += 1
-        if fair:
+        if fairness is FAIR:
             result = max_a_posteriori_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
             results.append(result)
         else:
@@ -54,16 +56,16 @@ def full_bayesian_coin(t, h, a, b):
     return numerator / denominator
 
 
-def full_bayesian_throws(large_n, a, b, fair=True):
+def full_bayesian_throws(num_throws, a, b, fairness=FAIR):
     results = []
     heads, tails = 0, 0
-    for n in range(1, large_n+1):
+    for n in range(1, num_throws+1):
         outcome = choice([True, False])
         if outcome is True:
             heads += 1
         else:
             tails += 1
-        if fair:
+        if fairness is FAIR:
             result = full_bayesian_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
             results.append(result)
         else:
@@ -72,18 +74,18 @@ def full_bayesian_throws(large_n, a, b, fair=True):
     return results
 
 
-def play(large_n, a, b, fair=True):
+def play(num_throws, a, b, fairness=FAIR):
     results_mle = []
     results_map = []
     results_bayes = []
     heads, tails = 0, 0  # Initialise our counters
-    for n in range(1, large_n+1):
+    for n in range(1, num_throws+1):
         outcome = choice([True, False])  # We flip the coin here
         if outcome is True:
             tails += 1
         else:
             heads += 1
-        if fair:
+        if fairness is FAIR:
             result_mle = tails / (heads + tails)
             results_mle.append(result_mle)
 
@@ -121,29 +123,24 @@ def report(data, analysis):
 
 def main():
 
-    # Game setting
-    fair_coin = True
-    large_n = 50  # Number of throws
+    num_throws = 500
 
     # Prior beliefs
     a = 50  # a: prior belief of being tails
     b = 50  # b: prior belief of NOT being tails
 
     # Play and get the results
-    mle, max_a_post, bayes = play(large_n, a, b, fair=fair_coin)
+    mle, max_a_post, bayes = play(num_throws, a, b, fairness=FAIR)
 
     title = 'Maximum Likelihood Estimation'
-    # mle_coin(N, fair=fair_coin)
     plot(mle, title=title)
     report(mle, title)
 
     title = 'Maximum a Posteriori'
-    # results = map_throws(N, a, b, fair=fair_coin)
     plot(max_a_post, prior_belief=a/(a+b), title=title)
     report(max_a_post, title)
 
     title = 'Full Bayesian'
-    # results = full_bayesian_throws(N, a, b, fair=fair_coin)
     plot(bayes, prior_belief=a/(a+b), title=title)
     report(bayes, title)
 
