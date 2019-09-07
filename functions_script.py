@@ -4,15 +4,15 @@ import matplotlib.pyplot as plt
 import random
 
 
-def mean(v):
+def mean(v: list) -> float:
     return sum(v)/len(v)
 
 
-def sigmoid(x):
+def sigmoid(x: float) -> float:
     return 1/(1+exp(-x))
 
 
-def noisy_sine(samples, precision):
+def noisy_sine(samples, precision) -> list:
     X = []  # Targets Z
     for x_i in range(samples+1):
         X.append(sin((2*pi*x_i)/samples) + random.gauss(0, 1/precision))
@@ -22,23 +22,23 @@ def noisy_sine(samples, precision):
     return X
 
 
-def gaussian(alpha, x, sigma):
+def gaussian(alpha, x, sigma) -> float:
     return alpha*exp(-(x*x/sigma*sigma))
 
 
-def softmax(predictions):
+def softmax(predictions: list) -> list:
     denominator = 0.
     for prediction in predictions:
         denominator += exp(prediction)
     return [exp(x) / denominator for x in predictions]
 
 
-def binomial(total, choose):
+def binomial(total: int, choose: int) -> int:
     if choose > total:
         print('choose is higher than total. Please correct.')
-        return
-    try:
-        binom = fact(total) // fact(choose) // fact(total - choose)
-    except ValueError:
-        binom = 0
-    return binom
+    else:
+        try:
+            binom = fact(total) // fact(choose) // fact(total - choose)
+        except ValueError:
+            binom = 0
+        return binom

@@ -11,7 +11,7 @@ class Set:
         self.std_dev = std_dev
 
 
-def gauss_mean(x, mean, std_dev):
+def gauss_mean(x, mean, std_dev) -> float:
     var = std_dev**2
     sub_nom = (x - mean)**2
     sub_den = 2*var

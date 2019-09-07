@@ -59,6 +59,7 @@ def plot(results: list, title: str, prior_belief=None):
 
 
 def report(data: list, analysis: str):
+    # noinspection PyCompatibility
     print(f'Last prediction of {analysis} is: {round(data[-1], 2)}')
 
 
@@ -73,6 +74,7 @@ def main():
     # Play and get the results
     mle, max_a_post, bayes = play(num_throws, a, b, fairness=UNFAIR)
 
+    # Plotting results
     title = 'Maximum Likelihood Estimation'
     plot(mle, title=title)
     report(mle, title)
