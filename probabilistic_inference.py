@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from functions_script import plt
 from random import choice
+import numpy as np
 
 FAIR, UNFAIR = range(2)
 
@@ -110,10 +111,10 @@ def play(num_throws, a, b, fairness=FAIR):
 def plot(results, title, prior_belief=None):
     plt.plot(results)
     plt.title(title)
-    plt.xlabel("Num Throws")
-    plt.ylabel("Posterior probability that outcome is Tails")
+    plt.xlabel('Num Throws')
+    plt.ylabel('Posterior probability that outcome is Tails')
     if prior_belief is not None:
-        plt.axhline(prior_belief, color="orange")
+        plt.axhline(prior_belief, color='orange')
     plt.show()
 
 
@@ -123,14 +124,14 @@ def report(data, analysis):
 
 def main():
 
-    num_throws = 500
+    num_throws = 50
 
     # Prior beliefs
-    a = 50  # a: prior belief of being tails
-    b = 50  # b: prior belief of NOT being tails
+    a = num_throws  # a: prior belief of being tails
+    b = num_throws  # b: prior belief of NOT being tails
 
     # Play and get the results
-    mle, max_a_post, bayes = play(num_throws, a, b, fairness=FAIR)
+    mle, max_a_post, bayes = play(num_throws, a, b, fairness=UNFAIR)
 
     title = 'Maximum Likelihood Estimation'
     plot(mle, title=title)
