@@ -13,13 +13,13 @@ def sigmoid(x: float) -> float:
 
 
 def noisy_sine(samples, precision) -> list:
-    X = []  # Targets Z
+    xv = []  # X vector
     for x_i in range(samples+1):
-        X.append(sin((2*pi*x_i)/samples) + random.gauss(0, 1/precision))
-    plt.scatter(range(samples+1), X)
+        xv.append(sin((2*pi*x_i)/samples) + random.gauss(0, 1/precision))
+    plt.scatter(range(samples+1), xv)
     plt.title('Generated Noisy Sinusoid')
     plt.show()
-    return X
+    return xv
 
 
 def gaussian(alpha, x, sigma) -> float:

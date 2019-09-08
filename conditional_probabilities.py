@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
 
-def set_difference(a, b):
+def set_difference(a: set, b: set) -> set:
     new_set = set(a) - set(b)
     return new_set
 
 
-def set_union(a, b):
+def set_union(a: set, b: set) -> set:
     new_set = set(a) | set(b)
     return new_set
 
 
-def set_intersection(a, b):
+def set_intersection(a: set, b: set) -> set:
     new_set = set(a) & set(b)
     return new_set
 

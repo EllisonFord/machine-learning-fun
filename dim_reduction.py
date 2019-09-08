@@ -7,7 +7,7 @@ def covariance_matrix():
     pass
 
 
-def sample_cov(x, y):
+def sample_cov(x: list, y: list) -> float:
     mx = mean(x)
     my = mean(y)
     aggregate = 0.
@@ -16,7 +16,7 @@ def sample_cov(x, y):
     return aggregate / (len(x) - 1)
 
 
-def trace(matrix):
+def trace(matrix: list):
     s = 0.
     for i, element in enumerate(matrix):
         s += matrix[i][i]
@@ -48,7 +48,6 @@ def main():
     print(something1.mean())
     print(something2.mean())
     print()
-
 
 
 if __name__ == '__main__':
