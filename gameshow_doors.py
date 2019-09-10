@@ -11,8 +11,6 @@ def open_door(doors: list, your_choice: int) -> int:
 
 
 def gameshow_host(doors: list, your_choice: int) -> list:
-    # Chooses only between 2
-    a_or_b = choice([0, 1])
     doors_you_can_close = []
     for i, door in enumerate(doors):
         if i == your_choice: continue
@@ -21,6 +19,8 @@ def gameshow_host(doors: list, your_choice: int) -> list:
     if len(doors_you_can_close) is 1:
         doors[doors_you_can_close[0]] = -1
     else:
+        # Chooses only between 2
+        a_or_b = choice([0, 1])
         doors[doors_you_can_close[a_or_b]] = -1
     return doors
 
@@ -79,7 +79,7 @@ def main():
     aggregate += run_games(num_games, strategy=SWAP)
     aggregate += run_games(num_games, strategy=KEEP)
 
-    print(f'Error: {round(abs(100 - aggregate), 3)}%')
+    print(f'Error: {round(number=abs(100 - aggregate), ndigits=3)}%')
 
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ def p(event, sample_space):
         return event / sample_space
 
 
-def p_cond(posterior, prior, sample_space):
+def p_cond(posterior: set, prior: set, sample_space):
     if isinstance(posterior, set) or isinstance(prior, set):
         return (len(set_intersection(posterior, prior)) / sample_space) / p(prior, sample_space)
     else:
