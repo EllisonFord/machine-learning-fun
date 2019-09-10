@@ -75,11 +75,16 @@ def main():
     num_games = 100000
     aggregate = 0.
 
-    print('')
+    # Banner
+    banner = f'Played {num_games} times. Results:'
+    multi = len(banner)
+    print('\n'+'-'*multi+f'\n'+banner+'\n'+'-'*multi)
+
+    # Run games
     aggregate += run_games(num_games, strategy=SWAP)
     aggregate += run_games(num_games, strategy=KEEP)
 
-    print(f'Error: {round(number=abs(100 - aggregate), ndigits=3)}%')
+    print(f'Error: {round(number=abs(100 - aggregate), ndigits=3)}%\n')
 
 
 if __name__ == '__main__':
