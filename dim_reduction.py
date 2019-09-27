@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from functions_script import mean, plt
+from functions_script import vector_mean as mean
 import numpy as np
 
 

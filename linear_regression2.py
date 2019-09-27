@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
-from functions_script import mean
+from functions_script import vector_mean as mean
 
 
 def b_1(x, y):

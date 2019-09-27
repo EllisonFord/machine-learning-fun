@@ -4,6 +4,8 @@ from random import choice
 
 FAIR, UNFAIR = range(2)
 
+# TODO: Make the integral for other combinations
+
 
 def max_a_posteriori_coin(t: int, h: int, a: int, b: int) -> float:
     numerator = t + a - 1
@@ -48,7 +50,7 @@ def play(num_throws: int, a: int, b: int, fairness=FAIR) -> (list, list, list):
     return results_mle, results_map, results_bayes
 
 
-def plot(results: list, title: str, prior_belief=None):
+def plot(results: list, title: str, prior_belief=None) -> None:
     plt.plot(results)
     plt.title(title)
     plt.xlabel('Num Throws')
@@ -58,7 +60,7 @@ def plot(results: list, title: str, prior_belief=None):
     plt.show()
 
 
-def report(data: list, analysis: str):
+def report(data: list, analysis: str) -> None:
     # noinspection PyCompatibility
     print(f'Last prediction of {analysis} is: {round(data[-1], 2)}')
 
@@ -90,62 +92,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-"""
-def mle_coin(num_throws: int, fairness=FAIR) -> list:
-    results = []
-    heads, tails = 0, 0
-    for n in range(1, num_throws + 1):
-        outcome = choice([True, False])
-        if outcome is True:
-            heads += 1
-        else:
-            tails += 1
-        if fairness is FAIR:
-            result = tails / (heads + tails)
-            results.append(result)
-        else:
-            results.append(1)
-    return results
-
-
-def map_throws(num_throws: int, a: int, b: int, fairness=FAIR):
-    results = []
-    heads, tails = 0, 0
-    for n in range(1, num_throws+1):
-        outcome = choice([True, False])
-        if outcome is True:
-            heads += 1
-        else:
-            tails += 1
-        if fairness is FAIR:
-            result = max_a_posteriori_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
-            results.append(result)
-        else:
-            result = max_a_posteriori_coin(t=n, h=0, a=a, b=b)  # t=n means casino will throw Tails every
-            results.append(result)
-
-    print('Total num tails:', tails)
-    print('Total num heads:', heads)
-
-    return results
-
-
-def full_bayesian_throws(num_throws: int, a: int, b: int, fairness=FAIR):
-    results = []
-    heads, tails = 0, 0
-    for n in range(1, num_throws+1):
-        outcome = choice([True, False])
-        if outcome is True:
-            heads += 1
-        else:
-            tails += 1
-        if fairness is FAIR:
-            result = full_bayesian_coin(t=tails, h=heads, a=a, b=b)  # t=n means casino will throw Tails every
-            results.append(result)
-        else:
-            result = full_bayesian_coin(t=n, h=0, a=a, b=b)  # t=n means casino will throw Tails every
-            results.append(result)
-    return results
-"""

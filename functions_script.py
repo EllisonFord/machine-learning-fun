@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import random
 
 
-def mean(v: list) -> float:
+def vector_mean(v: list) -> float:
     return sum(v)/len(v)
 
 
