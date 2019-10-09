@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from functions_script import vector_mean as mean
+from functions_script import matrix_mean as mean
 from math import sqrt
 
 

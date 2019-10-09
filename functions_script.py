@@ -8,6 +8,10 @@ def vector_mean(v: list) -> float:
     return sum(v)/len(v)
 
 
+def matrix_mean(v: list) -> float:
+    return sum(v)/len(v)
+
+
 def sigmoid(x: float) -> float:
     return 1/(1+exp(-x))
 
