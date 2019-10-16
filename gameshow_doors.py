@@ -81,11 +81,10 @@ def setup_banner(num_games: int):
 def main():
 
     num_games = 100000
-    aggregate = 0.
-
     setup_banner(num_games)
 
     # Run games
+    aggregate = 0.
     aggregate += run_games(num_games, strategy=SWAP)
     aggregate += run_games(num_games, strategy=KEEP)
 
