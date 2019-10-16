@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from random import choice
 
 
@@ -10,6 +11,7 @@ def open_door(doors: list, your_choice: int) -> int:
     else: return 0
 
 
+# The host opens up a door that didn't contain the prize
 def gameshow_host(doors: list, your_choice: int) -> list:
     doors_you_can_close = []
     for i, door in enumerate(doors):
@@ -70,15 +72,18 @@ def run_games(num_games: int, strategy: int) -> float:
     return pct_score
 
 
+def setup_banner(num_games: int):
+    banner = f'Played {num_games} times. Results:'
+    multi = len(banner)
+    print('\n'+'-'*multi+f'\n'+banner+'\n'+'-'*multi)
+
+
 def main():
 
     num_games = 100000
     aggregate = 0.
 
-    # Banner
-    banner = f'Played {num_games} times. Results:'
-    multi = len(banner)
-    print('\n'+'-'*multi+f'\n'+banner+'\n'+'-'*multi)
+    setup_banner(num_games)
 
     # Run games
     aggregate += run_games(num_games, strategy=SWAP)
