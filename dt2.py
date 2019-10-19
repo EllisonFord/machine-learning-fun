@@ -7,11 +7,11 @@ import pandas
 
 def main():
 
-    r = pandas.read_csv('homework_01_dataset.csv', header=0)
+    r = pandas.read_csv('homework_01_dataset.csv', header=0, sep='\s*,\s*')
 
-    # print(r['z'])
+    print(r['x3'])
 
-    print(r)
+    # print(r)
 
 
 if __name__ == '__main__':

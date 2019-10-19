@@ -23,7 +23,7 @@ def trace(matrix: list):
     return s
 
 
-def center_data(v):
+def center_vector_data(v):
     mv = mean(v)
     new_v = []
     for i in v:
