@@ -36,9 +36,9 @@ def next_available_door_index(doors: list, your_choice: int) -> int:
     return door_you_can_change_to
 
 
-def run_single_game(strategy: int) -> int:
+def run_single_game(strategy: int, num_doors: int) -> int:
     # We set the game
-    doors = [0, 0, 0]
+    doors = [0 for i in range(num_doors)]
     prize_pocket = choice(range(len(doors)))
     doors[prize_pocket] = 1
 
@@ -59,10 +59,10 @@ def run_single_game(strategy: int) -> int:
     return score
 
 
-def run_games(num_games: int, strategy: int) -> float:
+def run_games(num_games: int, strategy: int, num_doors: int = 3) -> float:
     score = 0
     for game in range(num_games):
-        score += run_single_game(strategy)
+        score += run_single_game(strategy, num_doors)
     pct_score = 100 * score / num_games
 
     if strategy is SWAP: text = 'swapping'
