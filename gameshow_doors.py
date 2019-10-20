@@ -60,7 +60,7 @@ def run_single_game(strategy: int, num_doors: int) -> int:
 
 
 def run_games(num_games: int, strategy: int, num_doors: int = 3) -> float:
-    score = 0
+    score: int = 0
     for game in range(num_games):
         score += run_single_game(strategy, num_doors)
     pct_score = 100 * score / num_games
@@ -80,11 +80,11 @@ def setup_banner(num_games: int):
 
 def main():
 
-    num_games = 100000
+    num_games: int = 100000
     setup_banner(num_games)
 
     # Run games
-    aggregate = 0.
+    aggregate: float = 0.
     aggregate += run_games(num_games, strategy=SWAP)
     aggregate += run_games(num_games, strategy=KEEP)
 
