@@ -33,8 +33,7 @@ def fit_least_squares(X, y):
         Optimal regression coefficients (w[0] is the bias term).
 
     """
-    psi = np.linalg.pinv(X)
-    return np.dot(psi, y)
+    return np.linalg.pinv(X) @ y
 
 
 def fit_ridge(X, y, reg_strength):
@@ -55,8 +54,7 @@ def fit_ridge(X, y, reg_strength):
         Optimal regression coefficients (w[0] is the bias term).
 
     """
-    # TODO
-    return None
+    return np.linalg.inv(X.T @ X + reg_strength * np.eye(X.shape[1])) @ X.T @ y
 
 
 # Load the data
@@ -69,7 +67,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)
 # Ordinary least squares regression
 w_ls = fit_least_squares(X_train, y_train)
 
-# print(w_ls)
+
+fit_ridge(X, y, 5)
+
 #y_pred_ls = predict_linear_model(X_test, w_ls)
 #mse_ls = mean_squared_error(y_test, y_pred_ls)
 #print('MSE for Least squares = {0}'.format(mse_ls))
