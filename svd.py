@@ -9,6 +9,9 @@ A = np.array([[7, 2.5],
 
 U, SIG, V = np.linalg.svd(A)
 
+SIG = np.diag(SIG)
+
+
 print(U)
 
 print('\nU')
@@ -21,7 +24,7 @@ print('\nV')
 print(V)
 
 print('\nPutting things back?')
-R = U @ SIG @ V.T
+R = U @ SIG @ V
 print(R)
 
 print('\nProjected:')
