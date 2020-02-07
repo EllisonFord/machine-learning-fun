@@ -11,9 +11,6 @@ U, SIG, V = np.linalg.svd(A)
 
 SIG = np.diag(SIG)
 
-
-print(U)
-
 print('\nU')
 print(U)
 
