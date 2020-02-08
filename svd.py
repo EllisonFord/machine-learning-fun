@@ -3,13 +3,19 @@
 import numpy as np
 
 
+def reduce_energy(eig_vals: np.array, thresh=0.9) -> np.array:
+    sum_energy = sum(eig_vals**2)
+    for val in eig_vals:
+        pass
+    return np.diag(SIG)
+
+
 A = np.array([[7, 2.5],
               [2, 0]])
 
 
 U, SIG, V = np.linalg.svd(A)
 
-SIG = np.diag(SIG)
 
 print('\nU')
 print(U)
